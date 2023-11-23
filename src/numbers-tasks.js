@@ -51,12 +51,7 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  const sumOfNum = value1 + value2;
-  const res = sumOfNum / 2;
-  if (res === Infinity) {
-    return 1.7976931348623157e308;
-  }
-  return sumOfNum / 2;
+  return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -114,14 +109,7 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  const rad = x1 * x2 + y1 * y2;
-  const A = Math.sqrt(x1 * x1 + y1 * y1);
-  const B = Math.sqrt(x2 * x2 + y2 * y2);
-
-  const cTheta = rad / (A * B);
-  const t = Math.acos(cTheta);
-
-  return t;
+  return Math.abs(Math.atan2(y2, x2) - Math.atan2(y1, x1));
 }
 
 /**
@@ -271,19 +259,10 @@ function getCube(num) {
  *   10 => 55
  */
 function getFibonacciNumber(index) {
-  let fib = 0;
-  let fib2 = 0;
-  let fib3 = 1;
-  if (index === 0) {
-    return 0;
+  if (index <= 1) {
+    return index;
   }
-  for (let i = 0; i < index; i += 1) {
-    fib = fib3 + fib2;
-    fib3 = fib2;
-    fib2 = fib;
-  }
-
-  return fib;
+  return getFibonacciNumber(index - 1) + getFibonacciNumber(index - 2);
 }
 
 /**
@@ -338,11 +317,7 @@ function getSumOfDigits(num) {
  *   15  => false
  */
 function isPowerOfTwo(num) {
-  if (num <= 0) {
-    return false;
-  }
-  const res = Math.log2(num);
-  return Number.isInteger(res);
+  return Number.isInteger(Math.log2(num));
 }
 
 /**
@@ -449,7 +424,7 @@ function getNumberValue(number) {
  * '5'      => false
  */
 function isNumber(number) {
-  return typeof number === 'number' && Number.isFinite(number);
+  return Number.isFinite(number);
 }
 
 /**
